@@ -15,10 +15,13 @@ UPDATE ym_artist
 	SET num_ratings = sq.nr,
 	avg_rating = sq.ar 
 	FROM (
-		SELECT aid,count(rating) AS nr,
+		SELECT aid,
+		cast(count(rating) AS int) AS nr,
 		round(avg(rating),4) AS ar
 		FROM ym_ratings GROUP BY aid) AS sq
 	WHERE ym_artist.aid = sq.aid ;
+
+DELETE FROM ym_artist WHERE num_ratings IS NULL;
 
 CREATE INDEX ym_user_uid_idx ON ym_user (uid) ;
 CREATE INDEX ym_artist_aid_idx ON ym_artist (aid) ;
