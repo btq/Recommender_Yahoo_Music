@@ -11,13 +11,18 @@ The steps used to create and import data into the database are in the scripts/in
 ```
 #!/bin/bash
 
+# Edit the line below to reflect your own path
+REPODIR = /home/btq/GitHub/Recommender_Yahoo_Music
+cd $REPODIR
+
 createdb ymusic_data
 
-psql ymusic_data -f create_ymusic_schema.sql
+psql ymusic_data -f scripts/create_ymusic_schema.sql
 
-tail -n 97954 ydata-ymusic-artist-names-v1_0.txt > ydata-ymusic-artist-names-v2_0.txt
+tail -n 97954 data/ydata-ymusic-artist-names-v1_0.txt > data/ydata-ymusic-artist-names-v2_0.txt
 
-psql ymusic_data -f import_ymusic_data.sql
+psql ymusic_data -f scripts/import_ymusic_data.sql
+
 ```
 The steps performed in this script are:
 * Create the ymusic_data database with the createdb command
