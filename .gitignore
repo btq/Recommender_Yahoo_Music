@@ -1,3 +1,8 @@
+# Custom ignores
+.ipynb_checkpoints/
+data/
+docs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
